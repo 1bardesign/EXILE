@@ -1,5 +1,8 @@
 require("bit")
 require("bmp")
+--fix padding for old GPUs
+require("scripts/newPaddedImage.lua")
+--init loop
 local oo = require("loop.base")
 
 GRAVITY = 0.05
@@ -124,9 +127,9 @@ function love.mousepressed(x, y, button)
 end
 
 function love.load()
-	map = love.graphics.newImage("exile_2.jpg")
+	map = newPaddedImage("exile_2.jpg")
 	col = bmp.load("exile_2_c.bmp")
-	playerImg = love.graphics.newImage("player_idle.png")
+	playerImg = newPaddedImage("player_idle.png")
 	
 	player = Player{img = playerImg, x = 150}
 end
